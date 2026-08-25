@@ -40,9 +40,9 @@ export function formatNumber(
 export function setFormErrors(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   form: UseFormReturn<any>,
-  errors: Record<string, string[]>,
+  errors: Partial<Record<string | number | symbol, string[]>>,
 ) {
   for (const [field, messages] of Object.entries(errors)) {
-    form.setError(field, { message: messages.join(" ") });
+    if (messages) form.setError(field, { message: messages.join(" ") });
   }
 }

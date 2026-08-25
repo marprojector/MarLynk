@@ -5,5 +5,5 @@ export type UserWithLink = User & { userLink?: UserLink };
 export type SafeActionError = {
   serverError?: string;
   fetchError?: string;
-  validationErrors?: Record<string, string[]>;
+  validationErrors?: Partial<Record<string | number | symbol, string[]>>;
 };

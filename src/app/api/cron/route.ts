@@ -2,6 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { deleteExpiredLinks } from "~/server/api/link";
 import { deleteExpiredUserLinks } from "~/server/api/user-link";
 
+export const dynamic = "force-dynamic";
+
 function isAuthorized(req: NextRequest): boolean {
   return (
     req.headers.get("Authorization") === `Bearer ${process.env.CRON_SECRET}`
