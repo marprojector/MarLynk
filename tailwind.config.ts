@@ -40,6 +40,10 @@ export default {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          foreground: "hsl(var(--brand-foreground))",
+        },
         muted: {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
@@ -61,6 +65,14 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      boxShadow: {
+        sm: "0 1px 2px 0 rgb(0 0 0 / 0.04)",
+        DEFAULT:
+          "0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06)",
+        md: "0 4px 12px -2px rgb(0 0 0 / 0.10)",
+        lg: "0 16px 40px -12px rgb(0 0 0 / 0.22)",
+        brand: "0 10px 30px -8px hsl(var(--brand) / 0.45)",
       },
       keyframes: {
         "accordion-down": {

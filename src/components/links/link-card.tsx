@@ -25,7 +25,7 @@ export const LinkCard = ({ link, session }: LinkCardProps) => {
   const shortenedURL = `${getBaseUrl()}/${slug}`;
 
   return (
-    <Card className="relative hover:border-foreground dark:hover:border-neutral-500 transition-colors">
+    <Card className="relative transition-colors hover:border-brand/40">
       <CardContent className="flex gap-2 p-3">
         <div className="flex flex-col min-w-8 justify-center">
           <Image
@@ -103,25 +103,23 @@ export const LinkCard = ({ link, session }: LinkCardProps) => {
         link={{ ...link, url: decodedURL }}
         session={session}
       />
-      {slug !== "github" && (
-        <span className="absolute right-3 bottom-3 text-[10px] text-muted-foreground font-medium">
-          <Tooltip>
-            <TooltipTrigger>
-              {formatDistanceToNowStrict(new Date(link.createdAt), {
-                addSuffix: true,
-              })}
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>
-                {new Intl.DateTimeFormat("en-US", {
-                  dateStyle: "long",
-                  timeStyle: "short",
-                }).format(new Date(link.createdAt))}
-              </p>
-            </TooltipContent>
-          </Tooltip>
-        </span>
-      )}
+      <span className="absolute right-3 bottom-3 text-[10px] text-muted-foreground font-medium">
+        <Tooltip>
+          <TooltipTrigger>
+            {formatDistanceToNowStrict(new Date(link.createdAt), {
+              addSuffix: true,
+            })}
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>
+              {new Intl.DateTimeFormat("en-US", {
+                dateStyle: "long",
+                timeStyle: "short",
+              }).format(new Date(link.createdAt))}
+            </p>
+          </TooltipContent>
+        </Tooltip>
+      </span>
     </Card>
   );
 };

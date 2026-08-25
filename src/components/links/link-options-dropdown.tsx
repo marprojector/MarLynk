@@ -62,7 +62,6 @@ export const LinkOptionsDropdown = ({
           <DropdownMenuItem
             className="text-red-500 focus:text-red-500 focus:bg-red-500/10"
             onClick={() => setIsDeleteDialogOpen(true)}
-            disabled={link.slug === "github"}
           >
             <Icons.Trash2 className={iconVariants({ className: "mr-2" })} />
             Delete

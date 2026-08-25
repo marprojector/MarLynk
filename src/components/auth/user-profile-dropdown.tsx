@@ -58,7 +58,7 @@ export const UserProfileDropdown = ({ user }: UserProfileDropdownProps) => {
                 <AvatarFallback>{nameInitials}</AvatarFallback>
               </Avatar>
               <div className="absolute bottom-[-1px] end-[-1px] bg-background p-0.5 rounded-full">
-                <div className="bg-blue-500 rounded-full p-1"></div>
+                <div className="bg-brand rounded-full p-1"></div>
               </div>
             </div>
             <div className="ms-2 max-w-40">

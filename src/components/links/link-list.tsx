@@ -7,6 +7,8 @@ import { type Session } from "next-auth";
 
 import { SigninDialog } from "~/components/auth/signin-dialog";
 import { LinkCard } from "~/components/links/link-card";
+import { Card, CardContent } from "~/components/ui/card";
+import { Icons, iconVariants } from "~/components/ui/icons";
 
 const fetchLinksBySessionOrCookie = async (
   session: Session | null,
@@ -41,6 +43,8 @@ export const LinkList = async () => {
     throw new Error("Failed to fetch links");
   }
 
+  const hasLinks = Boolean(defaultAppLink) || shortLinks.length > 0;
+
   return (
     <>
       <div className="flex w-full flex-col gap-2">
@@ -48,6 +52,20 @@ export const LinkList = async () => {
         {shortLinks.map((link) => (
           <LinkCard key={link.slug} link={link} session={session} />
         ))}
+        {!hasLinks && (
+          <Card className="border-dashed">
+            <CardContent className="flex flex-col items-center gap-2 p-10 text-center">
+              <div className="rounded-full bg-muted p-3 text-muted-foreground">
+                <Icons.Link className={iconVariants({ size: "lg" })} />
+              </div>
+              <p className="font-medium">No links yet</p>
+              <p className="max-w-xs text-sm text-muted-foreground">
+                Paste a URL above to create your first short link. It will
+                show up here instantly.
+              </p>
+            </CardContent>
+          </Card>
+        )}
       </div>
       {!session && shortLinks.length > 0 && (
         <div className="text-xs text-muted-foreground px-4">

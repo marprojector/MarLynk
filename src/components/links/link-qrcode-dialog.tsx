@@ -92,7 +92,7 @@ export const LinkQRCodeDialog = ({
             <ResponsiveDialogTitle>QR Code</ResponsiveDialogTitle>
           </ResponsiveDialogHeader>
           <ResponsiveDialogBody className="flex flex-col gap-6 items-center px-4 py-6">
-            <div className="border border-slid border-border rounded-lg p-4">
+            <div className="rounded-lg border border-border p-4">
               <div ref={qrcodeRef}>
                 <QRCodeSVG
                   value={url}

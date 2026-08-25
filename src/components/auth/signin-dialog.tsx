@@ -3,7 +3,6 @@
 import React from "react";
 import { type BuiltInProviderType } from "next-auth/providers/index";
 import { signIn, type LiteralUnion } from "next-auth/react";
-import { useTheme } from "next-themes";
 
 import {
   Dialog,
@@ -17,8 +16,6 @@ import {
 import { OAuthProviderButton } from "./oauth-provider-button";
 
 export const SigninDialog = ({ children }: { children: React.ReactNode }) => {
-  const { theme } = useTheme();
-
   const [signinProvider, setSigninProvider] =
     React.useState<LiteralUnion<BuiltInProviderType>>();
 
@@ -43,14 +40,14 @@ export const SigninDialog = ({ children }: { children: React.ReactNode }) => {
             providerName="Google"
             isLoading={signinProvider === "google"}
             handleSignin={handleSignin}
-            variant={theme === "dark" ? "default" : "secondary"}
+            variant="default"
           />
           <OAuthProviderButton
             provider="github"
             providerName="GitHub"
             isLoading={signinProvider === "github"}
             handleSignin={handleSignin}
-            variant={theme === "dark" ? "secondary" : "default"}
+            variant="secondary"
           />
         </div>
       </DialogContent>
