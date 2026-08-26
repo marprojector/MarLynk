@@ -22,10 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col`}
-      >
+    <html lang="en" className="dark" suppressHydrationWarning>
+  <body
+    className={`font-sans ${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col`}
+  >
         <Providers>
           <Header />
           <main className="mx-auto max-w-5xl flex-1 px-4">{children}</main>

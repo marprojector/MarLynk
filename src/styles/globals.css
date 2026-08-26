@@ -39,7 +39,7 @@
   }
 
   .dark {
-    --background: 0 0% 3.9%;
+    --background: 0 0% 6%;
     --foreground: 0 0% 98%;
 
     --card: 0 0% 3.9%;
@@ -72,11 +72,21 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+@layer utilities {
+  .animate-gradient {
+    animation: gradient 15s ease infinite;
+    background-size: 200% 200%;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }

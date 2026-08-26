@@ -24,9 +24,12 @@ import { editLinkSchema, insertLinkSchema } from "~/lib/validations/link";
 import { getServerAuthSession } from "../auth";
 import { redis } from "../redis";
 
+type CreateLinkInput = z.infer<typeof insertLinkSchema>;
+type EditLinkInput = z.infer<typeof editLinkSchema>;
+
 export const createShortLink = action(
   insertLinkSchema,
-  async ({ url, slug, description }) => {
+  async ({ url, slug, description }: CreateLinkInput) => {
     const session = await getServerAuthSession();
 
     if (session) {
@@ -72,7 +75,7 @@ export const createShortLink = action(
 
 export const deleteShortLink = action(
   z.object({ slug: z.string() }),
-  async ({ slug }) => {
+  async ({ slug }: { slug: string }) => {
     const cookieStore = cookies();
     const userLinkIdCookie = cookieStore.get("user-link-id")?.value;
 
@@ -96,7 +99,10 @@ export const deleteShortLink = action(
 
 export const editShortLink = authAction(
   editLinkSchema,
-  async ({ slug, newLink }, { user }) => {
+  async (
+    { slug, newLink }: EditLinkInput,
+    { user }: { user: { id: string } },
+  ) => {
     const newUrl = encodeURIComponent(newLink.url);
     const newSlug = newLink.slug;
 
@@ -110,8 +116,7 @@ export const editShortLink = authAction(
       throw new MyCustomError("Link not found");
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const updatePromises: Promise<any>[] = [];
+    const updatePromises: Promise<unknown>[] = [];
 
     if (newSlug !== slug) {
       const slugExists = await checkSlugExists(newSlug);
@@ -146,7 +151,7 @@ export const editShortLink = authAction(
 
 export const checkSlug = authAction(
   insertLinkSchema.pick({ slug: true }),
-  async ({ slug }) => {
+  async ({ slug }: { slug: string }) => {
     return await checkSlugExists(slug);
   },
 );

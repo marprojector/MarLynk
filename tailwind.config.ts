@@ -41,7 +41,7 @@ export default {
           foreground: "hsl(var(--destructive-foreground))",
         },
         brand: {
-          DEFAULT: "hsl(var(--brand))",
+          DEFAULT: "hsl(var(--brand) / <alpha-value>)",
           foreground: "hsl(var(--brand-foreground))",
         },
         muted: {

@@ -1,0 +1,8 @@
+@tailwind utilities;
+
+@layer utilities {
+  /* Full-screen background for the layout */
+  .layout-container {
+    background: black;
+  }
+}

@@ -6,6 +6,7 @@ import { type ShortLink } from "~/server/db/schema";
 import { type Session } from "next-auth";
 
 import { SigninDialog } from "~/components/auth/signin-dialog";
+import { ScrollReveal } from "~/components/motion/scroll-reveal";
 import { LinkCard } from "~/components/links/link-card";
 import { Card, CardContent } from "~/components/ui/card";
 import { Icons, iconVariants } from "~/components/ui/icons";
@@ -47,7 +48,7 @@ export const LinkList = async () => {
 
   return (
     <>
-      <div className="flex w-full flex-col gap-2">
+      <ScrollReveal className="flex w-full flex-col gap-2">
         {defaultAppLink && <LinkCard link={defaultAppLink} />}
         {shortLinks.map((link) => (
           <LinkCard key={link.slug} link={link} session={session} />
@@ -66,7 +67,7 @@ export const LinkList = async () => {
             </CardContent>
           </Card>
         )}
-      </div>
+      </ScrollReveal>
       {!session && shortLinks.length > 0 && (
         <div className="text-xs text-muted-foreground px-4">
           Maximize your link's lifespan beyond 24 hours by{" "}
