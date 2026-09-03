@@ -28,7 +28,7 @@ export default function RootLayout({
   >
         <Providers>
           <Header />
-          <main className="mx-auto max-w-5xl flex-1 px-4">{children}</main>
+          <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4">{children}</main>
           <Footer />
           <Toaster />
         </Providers>
