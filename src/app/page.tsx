@@ -19,17 +19,19 @@ export default function Home() {
           Short links,{" "}
           <span className="text-brand">straight to the point.</span>
         </StaggerItem>
-        <StaggerItem as="p" className="mx-auto mt-3 max-w-md text-balance text-base leading-relaxed text-muted-foreground">
+        <StaggerItem as="p" className="mx-auto mt-5 max-w-md text-balance text-base leading-relaxed text-muted-foreground">
           Paste a URL, get a clean MarLynk link — with an optional QR code — in
           one click.
         </StaggerItem>
       </Stagger>
 
-      <div className="w-full max-w-xl">
+      {/* generous breathing room between hero and primary interaction */}
+      <div className="mt-12 w-full max-w-xl sm:mt-16">
         <LinkForm />
       </div>
 
-      <div className="w-full max-w-xl">
+      {/* larger section gap: interaction → results area */}
+      <div className="mt-14 w-full max-w-xl sm:mt-20">
         <Suspense fallback={<Loader size="4xl" className="my-20" />}>
           <LinkList />
         </Suspense>

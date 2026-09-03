@@ -55,12 +55,12 @@ export const LinkList = async () => {
         ))}
         {!hasLinks && (
           <Card className="border-dashed">
-            <CardContent className="flex flex-col items-center gap-2 p-10 text-center">
+            <CardContent className="flex flex-col items-center gap-3 p-10 text-center">
               <div className="rounded-full bg-muted p-3 text-muted-foreground">
                 <Icons.Link className={iconVariants({ size: "lg" })} />
               </div>
-              <p className="font-medium">No links yet</p>
-              <p className="max-w-xs text-sm text-muted-foreground">
+              <p className="mt-2 font-medium">No links yet</p>
+              <p className="max-w-xs text-sm leading-relaxed text-muted-foreground">
                 Paste a URL above to create your first short link. It will
                 show up here instantly.
               </p>
