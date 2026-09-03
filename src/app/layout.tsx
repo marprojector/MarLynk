@@ -22,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
   <body
-    className={`font-sans ${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col`}
+    className={`bg-background text-foreground font-sans ${GeistSans.variable} ${GeistMono.variable} flex min-h-screen flex-col`}
   >
         <Providers>
           <Header />
