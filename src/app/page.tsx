@@ -7,7 +7,7 @@ import { LinkList } from "~/components/links/link-list";
 
 export default function Home() {
   return (
-    <div className="flex w-full flex-1 flex-col justify-center py-10 sm:py-14 lg:py-16">
+    <div className="flex w-full flex-1 flex-col items-center justify-center py-10 sm:py-14 lg:py-16">
       {/* Subtle ambient light + fine grid, kept very quiet */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-[-20rem] h-[40rem] w-[80rem] -translate-x-1/2 rounded-full bg-brand/10 blur-[120px]" />
