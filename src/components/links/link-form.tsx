@@ -71,10 +71,7 @@ export const LinkForm = () => {
         </div>
       ) : null}
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col gap-2 sm:flex-row"
-        >
+        <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-2 sm:flex-row">
           <FormField
             control={form.control}
             name="url"
@@ -92,11 +89,7 @@ export const LinkForm = () => {
               </FormItem>
             )}
           />
-          <Button
-            type="submit"
-            size="lg"
-            isLoading={createLinkStatus === "executing"}
-          >
+          <Button type="submit" size="lg" isLoading={createLinkStatus === "executing"}>
             Shorten
           </Button>
         </form>
