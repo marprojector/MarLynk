@@ -5,6 +5,7 @@ import { getServerAuthSession } from "~/server/auth";
 import { type ShortLink } from "~/server/db/schema";
 import { type Session } from "next-auth";
 
+import { GUEST_LINK_EXPIRE_TIME } from "~/lib/config";
 import { SigninDialog } from "~/components/auth/signin-dialog";
 import { ScrollReveal } from "~/components/motion/scroll-reveal";
 import { LinkCard } from "~/components/links/link-card";
@@ -25,7 +26,8 @@ const fetchLinksBySessionOrCookie = async (
       return [];
     }
 
-    return await getLinksByUserLinkId(userLinkIdCookie);
+    const createdAfter = new Date(Date.now() - GUEST_LINK_EXPIRE_TIME * 1000);
+    return await getLinksByUserLinkId(userLinkIdCookie, { createdAfter });
   }
 };
 

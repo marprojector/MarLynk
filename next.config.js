@@ -4,6 +4,10 @@
  */
 await import("./src/env.js");
 
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
+
 /** @type {import("next").NextConfig} */
 const config = {
   eslint: {
@@ -15,9 +19,10 @@ const config = {
     },
   },
   experimental: {
-    ppr: true,
+    serverComponentsExternalPackages: ["@libsql/isomorphic-ws"],
   },
   images: {
+    unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "t3.gstatic.com" }],
   },
 };

@@ -1,0 +1,29 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "marlynk",
+  "main": "./custom-worker.ts",
+  "upload_source_maps": true,
+  "compatibility_date": "2026-10-30",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "NEXTAUTH_URL": "https://marlynk.ammararief.my.id",
+    "DOMAIN_URL": "https://marlynk.ammararief.my.id",
+    "NODE_ENV": "production"
+  },
+  "routes": [
+    {
+      "pattern": "marlynk.ammararief.my.id",
+      "custom_domain": true
+    }
+  ],
+  "triggers": {
+    "crons": ["0 0 * * *"]
+  }
+}

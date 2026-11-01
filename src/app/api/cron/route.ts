@@ -5,9 +5,12 @@ import { deleteExpiredUserLinks } from "~/server/api/user-link";
 export const dynamic = "force-dynamic";
 
 function isAuthorized(req: NextRequest): boolean {
-  return (
-    req.headers.get("Authorization") === `Bearer ${process.env.CRON_SECRET}`
-  );
+  const secret = process.env.CRON_SECRET;
+
+  // Fail closed: a missing secret must never authorize "Bearer undefined".
+  if (!secret) return false;
+
+  return req.headers.get("Authorization") === `Bearer ${secret}`;
 }
 
 export async function GET(req: NextRequest) {
