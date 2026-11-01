@@ -11,6 +11,7 @@ import {
   getUserLinkByUserId,
   updateUserLink,
 } from "~/server/api/user-link";
+import { buildMigratedLinkCacheWrites } from "~/server/api/link-filters";
 import { db } from "~/server/db";
 import { redis } from "~/server/redis";
 import {
@@ -70,8 +71,8 @@ export const authOptions: NextAuthOptions = {
       if (existingUserLink) {
         const links = await getLinksByUserLinkId(userLinkIdCookie);
 
-        const promises = links.map((link) =>
-          redis.persist(link.slug.toLowerCase()),
+        const promises = buildMigratedLinkCacheWrites(links).map(({ key, value }) =>
+          redis.set(key, value),
         );
 
         await Promise.allSettled([
@@ -84,8 +85,8 @@ export const authOptions: NextAuthOptions = {
         const userLink = await getUserLinkById(userLinkIdCookie);
 
         if (userLink) {
-          const promises = userLink.links.map((link) =>
-            redis.persist(link.slug.toLowerCase()),
+          const promises = buildMigratedLinkCacheWrites(userLink.links).map(
+            ({ key, value }) => redis.set(key, value),
           );
 
           await Promise.allSettled([

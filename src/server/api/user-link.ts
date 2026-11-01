@@ -8,7 +8,10 @@ import {
 } from "~/server/db/schema";
 import { desc, eq, sql } from "drizzle-orm";
 
-import { GUEST_LINK_COOKIE_EXPIRATION_TIME } from "~/lib/config";
+import {
+  GUEST_LINK_COOKIE_EXPIRATION_TIME,
+  GUEST_LINK_RETENTION_TIME,
+} from "~/lib/config";
 import { MyCustomError } from "~/lib/safe-action";
 
 export async function createNewUserLink(
@@ -100,7 +103,9 @@ export function setUserLinkIdCookie(id: string) {
 }
 
 export async function deleteExpiredUserLinks() {
+  const retentionDays = Math.floor(GUEST_LINK_RETENTION_TIME / (60 * 60 * 24));
+
   await db.run(
-    sql`DELETE FROM userLink WHERE userId IS NULL AND created_at < strftime('%s', 'now', '-30 day');`,
+    sql`DELETE FROM userLink WHERE userId IS NULL AND created_at < strftime('%s', 'now', ${`-${retentionDays} day`});`,
   );
 }

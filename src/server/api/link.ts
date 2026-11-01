@@ -10,7 +10,10 @@ import {
 import { redis } from "~/server/redis";
 import { desc, eq, sql } from "drizzle-orm";
 
-import { GUEST_LINK_EXPIRE_TIME } from "~/lib/config";
+import {
+  GUEST_LINK_EXPIRE_TIME,
+  GUEST_LINK_RETENTION_TIME,
+} from "~/lib/config";
 import { type LinkQueryOptions, buildUserLinkWhere } from "~/server/api/link-filters";
 import { MyCustomError } from "~/lib/safe-action";
 import { nanoid } from "~/lib/utils";
@@ -135,7 +138,9 @@ export async function updateLinksByUserLinkId(
 }
 
 export async function deleteExpiredLinks() {
+  const retentionDays = Math.floor(GUEST_LINK_RETENTION_TIME / (60 * 60 * 24));
+
   await db.run(
-    sql`DELETE FROM link WHERE userLinkId IN (SELECT id FROM userLink WHERE userId IS NULL) AND created_at < strftime('%s', 'now', '-1 day');`,
+    sql`DELETE FROM link WHERE userLinkId IN (SELECT id FROM userLink WHERE userId IS NULL) AND created_at < strftime('%s', 'now', ${`-${retentionDays} day`});`,
   );
 }

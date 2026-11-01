@@ -28,7 +28,11 @@ export default {
     );
 
     if (!response.ok) {
-      console.error(`cron failed: ${response.status} ${await response.text()}`);
+      const body = await response.text();
+      console.error(`cron failed: ${response.status} ${body}`);
+      // Surface the failure so the scheduled invocation is not reported as a
+      // success and Cloudflare can apply its retry behavior.
+      throw new Error(`cron failed with status ${response.status}`);
     }
   },
 };
