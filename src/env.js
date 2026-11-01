@@ -29,6 +29,9 @@ export const env = createEnv({
     GOOGLE_CLIENT_ID: z.string(),
     GOOGLE_CLIENT_SECRET: z.string(),
     DOMAIN_URL: z.string().url().optional(),
+    // Optional so local dev and builds without the cron trigger still work;
+    // the /api/cron route fails closed when this is unset.
+    CRON_SECRET: z.string().optional(),
   },
 
   /**
@@ -55,6 +58,7 @@ export const env = createEnv({
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     DOMAIN_URL: process.env.DOMAIN_URL,
+    CRON_SECRET: process.env.CRON_SECRET,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially
