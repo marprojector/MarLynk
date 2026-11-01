@@ -10,7 +10,7 @@ Next.js App Router. Paste any URL and get a clean, shareable `marlynk` link with
 a scannable QR code — instantly. Links can be created as a guest or tied to your
 account via GitHub / Google sign-in.
 
-🌐 Live demo: [marlynk.vercel.app](https://marlynk.vercel.app)
+🌐 Live demo: [marlynk.ammararief.my.id](https://marlynk.ammararief.my.id)
 
 ---
 
@@ -90,7 +90,7 @@ account via GitHub / Google sign-in.
    | `NEXTAUTH_SECRET`             | Session secret (`openssl rand -base64 32`)       |
    | `GITHUB_ID` / `GITHUB_SECRET` | GitHub OAuth credentials                         |
    | `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google OAuth credentials       |
-   | `DOMAIN_URL`                  | Public domain (e.g. `https://marlynk.vercel.app`) |
+   | `DOMAIN_URL`                  | Public domain (e.g. `https://marlynk.ammararief.my.id`) |
    | `CRON_SECRET`                 | Secret used to authorize the cron cleanup route  |
 
 4. **Push the database schema**
