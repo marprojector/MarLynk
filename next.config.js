@@ -14,10 +14,8 @@ const config = {
       fullUrl: true,
     },
   },
-  experimental: {
-    ppr: true,
-  },
   images: {
+    unoptimized: true,
     remotePatterns: [{ protocol: "https", hostname: "t3.gstatic.com" }],
   },
 };
