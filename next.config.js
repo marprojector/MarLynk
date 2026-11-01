@@ -4,6 +4,10 @@
  */
 await import("./src/env.js");
 
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+
+initOpenNextCloudflareForDev();
+
 /** @type {import("next").NextConfig} */
 const config = {
   eslint: {
@@ -13,6 +17,9 @@ const config = {
     fetches: {
       fullUrl: true,
     },
+  },
+  experimental: {
+    serverComponentsExternalPackages: ["@libsql/isomorphic-ws"],
   },
   images: {
     unoptimized: true,

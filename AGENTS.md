@@ -37,6 +37,9 @@
 | `npm run db:push` | Push schema to Turso |
 | `npm run db:studio` | Open Drizzle Studio |
 | `npm run db:pull` | Pull schema from Turso |
+| `pnpm preview` | Build + run in the Workers runtime locally |
+| `pnpm deploy` | Build + deploy to Cloudflare |
+| `pnpm test` | Run unit tests (node:test via tsx) |
 
 ## Environment Variables
 
